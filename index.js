@@ -1,3 +1,9 @@
+module.exports = {
+  tictactoe: tictactoe,
+  xMove: xMove,
+  oMove: oMove
+}
+
 function tictactoe () {
   // Initial board
   var board = [["-","-","-"],
@@ -6,25 +12,23 @@ function tictactoe () {
   return board
 }
 
-function move (character) {
-  // x and y are between 0 and 2
-  return (function (board, x, y) {
-    board[x][y] = character
-    return board
-  })
+
+function xMove (board, x, y) {
+  board[x][y] = "X"
+  return board
 }
 
-var xMove = move("X")
-var oMove = move("O")
-
-console.log("Inside index", typeof xMove)
-var board = [["-","-","-"],
-            ["-","-","-"],
-            ["-","-","-"]]
-console.log("Inside index", xMove(board, 1, 1))
-
-module.exports = {
-  tictactoe: tictactoe,
-  xMove: xMove,
-  oMove: oMove
+function oMove (board, x, y) {
+  board[x][y] = "O"
+  return board
 }
+
+// can alternate X and O
+
+// can make a random move
+
+// can detect a win across
+
+// can detect a win down
+
+// can detect a win diagonally

@@ -21,7 +21,6 @@ test('make a move as X', function (t){
   var board = [["-","-","-"],["-","-","-"],["-","-","-"]]
   var expected = [["-","-","-"],["-","X","-"],["-","-","-"]]
   //Act
-  console.log("Inside test", typeof game.xMove)
   var actual = game.xMove(board, 1, 1)
   //Assert
   t.deepEqual(actual, expected)
