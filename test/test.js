@@ -10,7 +10,30 @@ test('create an empty board', function (t){
   //Arrange
   var expected = [["-","-","-"],["-","-","-"],["-","-","-"]]
   //Act
-  var actual = game()
+  var actual = game.tictactoe()
+  //Assert
+  t.deepEqual(actual, expected)
+  t.end()
+})
+
+test('make a move as X', function (t){
+  //Arrange
+  var board = [["-","-","-"],["-","-","-"],["-","-","-"]]
+  var expected = [["-","-","-"],["-","X","-"],["-","-","-"]]
+  //Act
+  console.log("Inside test", typeof game.xMove)
+  var actual = game.xMove(board, 1, 1)
+  //Assert
+  t.deepEqual(actual, expected)
+  t.end()
+})
+
+test('make a move as O', function (t){
+  //Arrange
+  var board = [["-","-","-"],["-","-","-"],["-","-","-"]]
+  var expected = [["-","-","-"],["-","O","-"],["-","-","-"]]
+  //Act
+  var actual = game.oMove(board, 1, 1)
   //Assert
   t.deepEqual(actual, expected)
   t.end()
