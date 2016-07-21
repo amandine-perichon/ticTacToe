@@ -10,7 +10,7 @@ test('create an empty board', function (t){
   //Arrange
   var expected = [["-","-","-"],["-","-","-"],["-","-","-"]]
   //Act
-  var actual = game.tictactoe()
+  var actual = game.buildBoard()
   //Assert
   t.deepEqual(actual, expected)
   t.end()
@@ -33,6 +33,71 @@ test('make a move as O', function (t){
   var expected = [["-","-","-"],["-","O","-"],["-","-","-"]]
   //Act
   var actual = game.oMove(board, 1, 1)
+  //Assert
+  t.deepEqual(actual, expected)
+  t.end()
+})
+
+test('can fill in the board with random moves', function (t){
+  //Arrange
+  var board = [["-","-","-"],["-","-","-"],["-","-","-"]]
+  var expected = 0
+  //Act
+  var actual = game.tictactoe()[0].reduce(function(elemSum, elem){
+    return elemSum + elem.reduce(function (sum, cell) {
+      return cell === "-"? sum + 1 : sum
+    }, 0)
+  }, 0)
+  //Assert
+  t.deepEqual(actual, expected)
+  t.end()
+})
+
+test('can detect a win across', function (t){
+  //Arrange
+  var board = [["X","X","X"],
+              ["O","O","X"],
+              ["X","O","O"]]
+  var expected = "X"
+  //Act
+  var actual = game.getWinner(board)
+  //Assert
+  t.deepEqual(actual, expected)
+  t.end()
+})
+
+test('can detect a win down', function (t){
+  //Arrange
+  var board = [["X","X","O"],
+              ["O","X","O"],
+              ["X","O","O"]]
+
+  var expected = "O"
+  //Act
+  var actual = game.getWinner(board)
+  //Assert
+  t.deepEqual(actual, expected)
+  t.end()
+})
+
+test('can detect a win diagonally', function (t){
+  //Arrange
+  var board = [["X","X","O"],
+              ["O","X","O"],
+              ["X","O","X"]]
+  var expected = "X"
+  //Act
+  var actual = game.getWinner(board)
+  //Assert
+  t.deepEqual(actual, expected)
+  t.end()
+})
+
+test('can provide board and winner', function (t){
+  //Arrange
+  var expected = [2, 'object', 'string']
+  //Act
+  var actual = [game.tictactoe().length, typeof game.tictactoe()[0], typeof game.tictactoe()[1]]
   //Assert
   t.deepEqual(actual, expected)
   t.end()
