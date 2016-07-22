@@ -9,17 +9,22 @@ module.exports = {
 function tictactoe () {
   var board = buildBoard()
   var i = 9
+  var winner = null
+
   while (i > 0) {
     board = randomMove(board, i)
+    winner = getWinner(board)
+    if (winner === ('X' || 'O')) {
+      return [board, winner]
+    }
+
     i = board.reduce(function(elemSum, elem){
       return elemSum + elem.reduce(function (sum, cell) {
         return cell === "-"? sum + 1 : sum
       }, 0)
     }, 0)
   }
-  console.log(board)
-
-  return [board, getWinner(board)]
+  return [board, winner]
 }
 
 function buildBoard () {
